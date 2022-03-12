@@ -520,6 +520,7 @@ spec:
     targetPort: 2746
   selector:
     app: argo-server
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -550,6 +551,9 @@ spec:
       containers:
       - args:
         - server
+        env:
+          - name: BASE_HREF
+            value: /
         image: argoproj/argocli:v3.0.3
         name: argo-server
         ports:
